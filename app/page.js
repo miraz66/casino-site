@@ -1,103 +1,91 @@
 import Image from "next/image";
+import Headers from "@/app/components/Headers";
+import Hero from "@/app/components/Hero";
+import ManuList from "@/app/components/ManuList";
+import Payments from "@/app/components/Payments";
+import Footer from "@/app/components/Footer";
+
+/**
+ * Import sidebar icons with descriptive names
+ * Each import is named according to its purpose for better maintainability
+ */
+import menuIcon from "./assets/menu_image.png";
+import promotionsIcon from "./assets/promotions_image.png";
+import vipClubIcon from "./assets/sidebar_vip_club.png";
+import tournamentIcon from "./assets/sidebar_tournament.png";
+import slotsIcon from "./assets/sidebar_slots.png";
+import blackjackIcon from "./assets/sidebar_blackjack.png";
+import rouletteIcon from "./assets/sidebar_roulette.png";
+import baccaratIcon from "./assets/sidebar_baccarat.png";
+import liveDealersIcon from "./assets/sidebar_live_dealers.png";
+import providersIcon from "./assets/sidebar_providers.png";
+import supportIcon from "./assets/sidebar_support.png";
+
+/**
+ * Array of sidebar icons with metadata for better accessibility and future extensibility
+ * Each item includes:
+ * - icon: The imported image
+ * - alt: Descriptive alt text for accessibility
+ * - id: Unique identifier
+ */
+const sidebarIcons = [
+  { icon: menuIcon, alt: "Menu", id: "menu" },
+  { icon: promotionsIcon, alt: "Promotions", id: "promotions" },
+  { icon: vipClubIcon, alt: "VIP Club", id: "vip-club" },
+  { icon: tournamentIcon, alt: "Tournaments", id: "tournaments" },
+  { icon: slotsIcon, alt: "Slot Games", id: "slots" },
+  { icon: blackjackIcon, alt: "Blackjack Games", id: "blackjack" },
+  { icon: rouletteIcon, alt: "Roulette Games", id: "roulette" },
+  { icon: baccaratIcon, alt: "Baccarat Games", id: "baccarat" },
+  { icon: liveDealersIcon, alt: "Live Dealers", id: "live-dealers" },
+  { icon: providersIcon, alt: "Game Providers", id: "providers" },
+  { icon: supportIcon, alt: "Customer Support", id: "support" },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main className="font-display text-text-primary bg-tertiary">
+      {/*
+        Fixed Sidebar Navigation
+        - Hidden on mobile (shown on md screens and up)
+        - Fixed positioning for persistent access
+      */}
+      <aside className="bg-primary fixed hidden min-h-screen w-14 py-4 md:block">
+        <nav className="flex w-full flex-col items-center justify-center gap-4">
+          {sidebarIcons.map(({ icon, alt, id }) => (
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              key={id}
+              src={icon}
+              alt={alt}
+              width={32} // Explicit width for performance
+              height={32} // Explicit height for performance
+              className="cursor-pointer transition-opacity hover:opacity-80"
+              role="button" // Indicates interactive element
+              tabIndex={0} // Make focusable for keyboard navigation
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          ))}
+        </nav>
+      </aside>
+
+      {/*
+        Main Page Layout
+        - Responsive max-width containers
+        - Padding adjusts for different screen sizes
+      */}
+      <div className="ml-0 md:ml-14">
+        {" "}
+        {/* Account for sidebar width on larger screens */}
+        {/* Header Component */}
+        <Headers />
+        {/* Main Content Area */}
+        <div className="mx-auto p-4 md:max-w-2xl lg:max-w-4xl xl:max-w-7xl xl:p-10">
+          <Hero />
+          <ManuList />
+          <Payments />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {/* Footer Component */}
+        <Footer />
+      </div>
+    </main>
   );
 }
