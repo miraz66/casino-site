@@ -1,4 +1,3 @@
-import React from "react";
 import { BellAlertIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import DepositIcon from "../assets/deposit_icon.png";

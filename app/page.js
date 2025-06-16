@@ -57,8 +57,6 @@ export default function Home() {
               key={id}
               src={icon}
               alt={alt}
-              width={32} // Explicit width for performance
-              height={32} // Explicit height for performance
               className="cursor-pointer transition-opacity hover:opacity-80"
               role="button" // Indicates interactive element
               tabIndex={0} // Make focusable for keyboard navigation
